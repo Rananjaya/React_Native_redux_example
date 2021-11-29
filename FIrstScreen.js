@@ -1,16 +1,19 @@
-import React from 'react';
+import React,{useEffect} from 'react';
 import { StyleSheet, Text, View,TextInput } from 'react-native';
 import { useSelector, useDispatch} from 'react-redux';
-import { setName,setAge } from './redux/actions';
+import { setName,setAge,getCities } from './redux/actions';
 
 
 
 const FIrstScreen = () => {
 
-     const {name, age} = useSelector(state => state.userReducer);
+     const {name, age, Data} = useSelector(state => state.userReducer);
      const dispatch = useDispatch();
 
-     console.log("redux data", name,age);
+     console.log("redux data", Data);
+     useEffect(() => {
+        dispatch(getCities());
+    }, []);
 
     return (
         <View style={{ flex: 1, backgroundColor: "#fff", justifyContent: "center", alignItems: "center" }}>
